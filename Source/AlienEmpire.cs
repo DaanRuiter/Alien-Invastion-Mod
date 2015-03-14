@@ -25,6 +25,7 @@ namespace AlienInvasion
 
             public void Tick(float deltaTime)
             {
+                //see if the system works, press K to spawn a new randomly placed fleet.
                 if(Input.GetKeyUp(KeyCode.K))
                 {
                     AlienFleet newFleet = new AlienFleet();
