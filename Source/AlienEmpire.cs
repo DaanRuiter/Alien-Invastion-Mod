@@ -56,23 +56,26 @@ namespace AlienInvasion
 
                 private void OnGUI()
                 {
-                    GUI.Label(_fleetCountPos, "Fleets: " + FleetCount());
+                    GUI.Label(_fleetCountPos, "Fleets: " + FleetCount);
                     for (int i = 0; i < _empire.GetFleets().Count; i++)
                     {
                         AlienFleet _fleet = _empire.GetFleets()[i];
-                        GUI.Label(new Rect(250, (30 + (15 * i)), 100, 45), "Ships: " + _fleet.ShipCount());
+                        GUI.Label(new Rect(250, (30 + (15 * i)), 100, 45), "Ships: " + _fleet.ShipCount);
                     }
                 }
 
-                private int FleetCount()
+                private int FleetCount
                 {
-                    if (_empire != null)
+                    get
                     {
-                        return _empire.GetFleets().Count;
-                    }
-                    else
-                    {
-                        return 0;
+                        if (_empire != null)
+                        {
+                            return _empire.GetFleets().Count;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
                     }
                 }
 

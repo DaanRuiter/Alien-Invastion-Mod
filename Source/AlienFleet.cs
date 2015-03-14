@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AlienInvasion.Factories;
+using System;
 
 namespace AlienInvasion
 {
@@ -25,14 +26,17 @@ namespace AlienInvasion
                 _ships.Add(_factory.CreateShip(type));
             }
 
-            public int ShipCount()
+            public int ShipCount
             {
-                if(_ships != null)
+                get
                 {
-                    return _ships.Count;
-                }else
-                {
-                    return 0;
+                    if(_ships != null)
+                    {
+                        return _ships.Count;
+                    }else
+                    {
+                        return 0;
+                    }
                 }
             }
         }

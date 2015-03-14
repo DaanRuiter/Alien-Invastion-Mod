@@ -16,7 +16,6 @@ namespace AlienInvasion
 {
     namespace Factories
     {
-        
 
         public class Factory
         {
