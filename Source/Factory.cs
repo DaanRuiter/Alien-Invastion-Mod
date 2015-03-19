@@ -2,21 +2,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AlienInvasion.Ships;
 
-public enum ShipType
-{
-    Fighter,
-    Frigate,
-    Cruiser,
-    Destroyer,
-    Mothership
-}
 
 namespace AlienInvasion
 {
     namespace Factories
     {
-
         public class Factory
         {
             private Shader _diffuseShader;
@@ -52,7 +44,28 @@ namespace AlienInvasion
             public GameObject CreateShip(ShipType type)
             {
                 GameObject ship = CreateShipObject();
-                ship.AddComponent<TrailRenderer>();
+
+                switch(type)
+                {
+                    case ShipType.Worker:
+                        ship.AddComponent<WorkerShip>();        
+                        break;
+                    case ShipType.Fighter:
+                        ship.AddComponent<FighterShip>();     
+                        break;
+                    case ShipType.Cruiser:
+                        ship.AddComponent<CruiserShip>();     
+                        break;
+                    case ShipType.Frigate:
+                        ship.AddComponent<FrigateShip>();     
+                        break;
+                    case ShipType.Destroyer:
+                        ship.AddComponent<DestroyerShip>();     
+                        break;
+                    case ShipType.Mothership:
+                        ship.AddComponent<MotherShip>();     
+                        break;
+                }
 
                 ship.transform.position = RandomPos();
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AlienInvasion.Fleets;
+using AlienInvasion.Factories;
 
 namespace AlienInvasion
 {
@@ -16,11 +17,18 @@ namespace AlienInvasion
             public AlienEmpire()
             {
                 _fleets = new List<AlienFleet>();
+                foreach (ColossalFramework.Plugins.PluginManager.PluginInfo pi in ColossalFramework.Singleton<ColossalFramework.Plugins.PluginManager>.instance.GetPluginsInfo())
+                {
+                    if (pi.name == "me")
+                    {
+                        string mypath = pi.modPath;
+                    }
+                }
             }
 
             public List<AlienFleet> GetFleets()
             {
-                return _fleets;
+                return _fleets;                
             }
 
             public void Tick(float deltaTime)
@@ -42,6 +50,7 @@ namespace AlienInvasion
         {
             public class EmpireGUI : MonoBehaviour
             {
+                public static string debugText = " ";
                 private Rect _fleetCountPos;
                 private AlienEmpire _empire;
 
@@ -58,6 +67,7 @@ namespace AlienInvasion
                 private void OnGUI()
                 {
                     GUI.Label(_fleetCountPos, "Fleets: " + FleetCount);
+                    GUI.Label(new Rect(385, 20, 150, 30), debugText);
                     for (int i = 0; i < _empire.GetFleets().Count; i++)
                     {
                         AlienFleet _fleet = _empire.GetFleets()[i];

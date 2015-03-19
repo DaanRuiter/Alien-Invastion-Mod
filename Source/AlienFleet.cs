@@ -1,9 +1,10 @@
 ﻿using ICities;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AlienInvasion.Factories;
-using System;
+using AlienInvasion.Ships;
 
 namespace AlienInvasion
 {
@@ -13,7 +14,7 @@ namespace AlienInvasion
         {
             private List<GameObject> _ships;
             private Factory _factory;
-
+            private Vector3 _spawnPoint;
 
             public AlienFleet()
             {
@@ -37,6 +38,34 @@ namespace AlienInvasion
                     {
                         return 0;
                     }
+                }
+            }
+
+            public AlienShipBase FleetCaptain
+            {
+                get
+                {
+                    if(_ships.Count >= 1)
+                    {
+                        return _ships[0];
+                    }
+                    else
+                    {
+                        //print(warning, no ship captain found)
+                        return null;
+                    }
+                }
+            }
+
+            public Vector3 SpawnPoint
+            {
+                get
+                {
+                    return _spawnPoint;
+                }
+                set
+                {
+                    _spawnPoint = value;
                 }
             }
         }

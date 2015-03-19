@@ -5,9 +5,19 @@ using AlienInvasion.Fleets;
 
 namespace AlienInvasion
 {
+    public enum ShipType
+    {
+        Worker,
+        Fighter,
+        Frigate,
+        Cruiser,
+        Destroyer,
+        Mothership
+    }
+
     namespace Ships
     {
-        class Ship : MonoBehaviour
+        abstract class AlienShipBase : MonoBehaviour
         {
             protected int shipIndex;
             protected int internalFleetIndex;
@@ -16,7 +26,7 @@ namespace AlienInvasion
             protected ShipType type;
             protected AlienFleet fleet;
 
-            public Ship(int shipIndex, int internalFleetIndex, int health, string pilotName,ShipType type, AlienFleet fleet)
+            public AlienShipBase(int shipIndex, int internalFleetIndex, int health, string pilotName, ShipType type, AlienFleet fleet)
             {
                 this.shipIndex = shipIndex;
                 this.internalFleetIndex = internalFleetIndex;
